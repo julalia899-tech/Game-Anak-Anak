@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7665ed">
+    <title>Petualangan Si Pintar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="brand" onclick="showHome()">
+            <span class="brand-icon">🌈</span>
+            <div>
+                <h2>Petualangan Si Pintar</h2>
+                <p>Belajar Seru, Bermain Gembira!</p>
+            </div>
+        </div>
+
+        <button class="sound-button" onclick="toggleSound()" id="soundButton">
+            🔊 Suara Aktif
+        </button>
+    </header>
+
+    <main>
+
+        <!-- HALAMAN UTAMA -->
+        <section id="homeScreen">
+
+            <div class="hero">
+                <div class="hero-text">
+                    <span class="tagline">HALO, TEMAN PINTAR! 👋</span>
+                    <h1>Ayo Belajar Sambil <span>Bermain!</span></h1>
+                    <p>
+                        Yuk, belajar bersama melalui permainan
+                        yang seru dan menyenangkan!
+                    </p>
+                    <button class="main-button" onclick="scrollToGames()">
+                        Pilih Permainan ➜
+                    </button>
+                </div>
+
+                <div class="hero-image">
+                    <span>☀️</span>
+                    <div>🦊</div>
+                    <span>🌈</span>
+                </div>
+            </div>
+
+            <div class="section-title" id="gameMenu">
+                <div>
+                    <span class="tagline">PILIH PETUALANGANMU</span>
+                    <h2>Permainan Seru 🎮</h2>
+                </div>
+                <span class="game-count">6 Permainan</span>
+            </div>
+
+            <div class="game-grid">
+
+                <button class="game-card blue" onclick="startGame('count')">
+                    <span class="game-icon">🍎</span>
+                    <h3>Kebun Berhitung</h3>
+                    <p>Belajar angka 1–20</p>
+                    <span class="play-text">Mainkan →</span>
+                </button>
+
+                <button class="game-card pink" onclick="startGame('letters')">
+                    <span class="game-icon">🔤</span>
+                    <h3>Dunia Huruf</h3>
+                    <p>Mengenal huruf A–Z</p>
+                    <span class="play-text">Mainkan →</span>
+                </button>
+
+                <button class="game-card green" onclick="startGame('animals')">
+                    <span class="game-icon">🐘</span>
+                    <h3>Tebak Siapa Aku?</h3>
+                    <p>Mengenal nama hewan</p>
+                    <span class="play-text">Mainkan →</span>
+                </button>
+
+                <button class="game-card yellow" onclick="startGame('shapes')">
+                    <span class="game-icon">🎨</span>
+                    <h3>Warna dan Bentuk</h3>
+                    <p>Mengenal warna dan bentuk</p>
+                    <span class="play-text">Mainkan →</span>
+                </button>
+
+                <button class="game-card purple" onclick="startGame('pairs')">
+                    <span class="game-icon">🧩</span>
+                    <h3>Pasangan Pintar</h3>
+                    <p>Mencocokkan gambar</p>
+                    <span class="play-text">Mainkan →</span>
+                </button>
+
+                <button class="game-card orange" onclick="startGame('spinner')">
+                    <span class="game-icon">🎡</span>
+                    <h3>Roda Kejutan</h3>
+                    <p>Tantangan menyenangkan</p>
+                    <span class="play-text">Mainkan →</span>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- HALAMAN PERMAINAN -->
+        <section id="gameScreen" class="hidden">
+
+            <div class="game-toolbar">
+                <button class="back-button" onclick="showHome()">
+                    ← Menu Utama
+                </button>
+
+                <div class="progress-container">
+                    <span id="progressText">Soal 1 dari 10</span>
+                    <div class="progress-bar">
+                        <div id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="score">
+                    ⭐ <span id="scoreText">0</span>
+                </div>
+            </div>
+
+            <div class="game-panel">
+
+                <div class="game-heading">
+                    <div>
+                        <span class="tagline">AYO BERMAIN!</span>
+                        <h2 id="gameTitle">Kebun Berhitung</h2>
+                    </div>
+                    <span id="questionNumber" class="question-number">
+                        1/10
+                    </span>
+                </div>
+
+                <h2 id="questionText" class="question">
+                    Ada berapa buah apel?
+                </h2>
+
+                <div id="gameContent" class="game-content"></div>
+
+                <div id="feedback" class="feedback"></div>
+
+                <div class="game-actions">
+                    <button id="nextButton" class="main-button hidden"
+                        onclick="nextQuestion()">
+                        Lanjut ➜
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HALAMAN HASIL -->
+        <section id="resultScreen" class="hidden result-screen">
+
+            <div class="result-card">
+                <div class="celebration">🎉 ✨ 🎊</div>
+                <div class="trophy">🏆</div>
+
+                <span class="tagline">PETUALANGAN SELESAI</span>
+
+                <h1>Hebat Sekali!</h1>
+                <p>Kamu sudah menyelesaikan permainan.</p>
+
+                <div class="final-score">
+                    <strong id="finalScore">0</strong>
+                    <span>Poin</span>
+                </div>
+
+                <div id="starsResult" class="result-stars">
+                    ⭐⭐⭐
+                </div>
+
+                <p id="resultMessage">
+                    Terus semangat belajar!
+                </p>
+
+                <div class="result-actions">
+                    <button class="main-button" onclick="replayGame()">
+                        Main Lagi ↻
+                    </button>
+
+                    <button class="back-button" onclick="showHome()">
+                        Pilih Game Lain 🏠
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        🌟 Petualangan Si Pintar - Belajar Sambil Bermain
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
